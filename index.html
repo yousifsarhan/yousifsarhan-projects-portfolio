@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Yousif Sarhan | Information Technology / Multimedia Systems</title>
+  <meta name="description" content="Portfolio of Yousif Sarhan — Information Technology & Multimedia Developer & Cinematographer."/>
+  <link rel="icon" href="assets/favicon.png"/>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#ffffffcc;
+      --card:#ffffff;
+      --text:#0b0b0b;
+      --muted:#525252;
+      --brand:#e50914;
+      --brand2:#b20710;
+      --line:#e5e7eb;
+      --shadow:0 8px 24px rgba(0,0,0,.08);
+      --radius:16px;
+      --maxw:1150px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:var(--bg);
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{opacity:.9}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+    /* Navbar */
+    .nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);
+      background:color-mix(in oklab,#fff 90%,transparent 10%);border-bottom:1px solid var(--line);}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .brand{font-weight:800;letter-spacing:.3px}
+    .nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
+    .nav a{color:var(--text);padding:8px 10px;border-radius:10px;font-weight:600}
+    .nav a:hover,.nav a.active{background:#f3f4f6}
+
+    /* Hero */
+    header.hero{
+      min-height:70vh;display:grid;place-items:center;
+      background:url('assets/hero.jpg') center/cover no-repeat,#fafafa;
+      border-bottom:1px solid var(--line);
+    }
+    .overlay{
+      background:var(--panel);backdrop-filter:blur(6px);
+      border:1px solid var(--line);border-radius:var(--radius);
+      padding:40px;text-align:center;box-shadow:var(--shadow);max-width:860px;
+    }
+    .overlay h1{margin:0 0 10px;font-size:clamp(30px,4vw,54px)}
+    .overlay span{color:var(--brand)}
+    .overlay p{color:var(--muted);max-width:640px;margin:0 auto 20px;line-height:1.6}
+    .cta{display:inline-block;padding:10px 18px;font-weight:800;border-radius:10px;margin:6px;
+      border:1px solid var(--brand);color:#fff;background:var(--brand);box-shadow:var(--shadow)}
+    .cta.secondary{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+    .cta:hover{transform:translateY(-1px)}
+
+    /* Section base */
+    section{scroll-margin-top:82px;padding:68px 0}
+    h2.section{font-size:30px;margin:0 0 8px}
+    .underline{display:inline-block;border-bottom:3px solid var(--brand);padding-bottom:6px;margin-bottom:22px}
+    .muted{color:var(--muted)}
+
+    /* Experience */
+    .timeline{display:grid;gap:18px}
+    details.exp{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      padding:16px 18px;box-shadow:var(--shadow)}
+    summary{cursor:pointer;list-style:none;font-weight:700}
+    .chip{margin-left:8px;font-size:12px;padding:3px 8px;border-radius:999px;background:#f3f4f6;
+      color:#111;border:1px solid var(--line)}
+    .bullets{margin-top:10px;padding-left:20px}
+    .bullets li{margin:6px 0;color:#262626}
+
+    /* Projects grid */
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 18px}
+    .pill{
+      border:1px solid var(--line);background:#fff;color:#111;padding:6px 12px;
+      border-radius:999px;cursor:pointer;font-weight:600
+    }
+    .pill.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .proj-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .proj-card{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      overflow:hidden;box-shadow:var(--shadow);transition:transform .2s
+    }
+    .proj-card:hover{transform:translateY(-3px)}
+    .proj-card .logo{aspect-ratio:16/9;display:grid;place-items:center;
+      background:#f3f4f6;border-bottom:1px solid var(--line)}
+    .proj-card .logo img{max-height:62%;max-width:72%;object-fit:contain;opacity:.95}
+    .proj-card .meta{padding:14px 16px}
+    .proj-card .meta h3{margin:0 0 6px;font-size:18px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 10px}
+    .tag{font-size:12px;background:#fff;border:1px solid var(--line);color:var(--brand2);
+      padding:4px 8px;border-radius:999px}
+    .actions{display:flex;gap:10px}
+    .btn-ghost{
+      display:inline-block;padding:8px 10px;border-radius:10px;
+      border:1px solid var(--line);color:var(--text);font-weight:600
+    }
+    .btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+
+    /* Skills / Education / Contact */
+    .list,.card-simple{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      padding:18px;box-shadow:var(--shadow)
+    }
+
+    /* Skills layout */
+    .skills-cols{
+      display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); align-items:start;
+    }
+    .badge-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+    .skill{
+      display:flex; align-items:center; gap:10px;
+      background:#fff; border:1px solid var(--line); border-radius:12px;
+      padding:8px 10px; min-height:42px;
+    }
+    .skill img{ width:20px; height:20px; object-fit:contain; }
+    .skill span{font-size:14px; color:#111}
+
+    .two{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+    footer{padding:40px 0 60px;text-align:center;color:#6b7280;border-top:1px solid var(--line)}
+    .toTop{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:12px;
+      display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:900;box-shadow:var(--shadow)}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="wrap container">
+      <div class="brand">Yousif Sarhan</div>
+      <ul>
+        <li><a class="navlink" href="#top">Top</a></li>
+        <li><a class="navlink" href="#experience">Experience</a></li>
+        <li><a class="navlink" href="#projects">Projects</a></li>
+        <li><a class="navlink" href="#skills">Skills</a></li>
+        <li><a class="navlink" href="#education">Education</a></li>
+        <li><a class="navlink" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="overlay">
+      <h1><span>Yousif Sarhan</span> — Information Technology / Multimedia</h1>
+      <p>Developer & Cinematographer blending technical and creative mastery to craft impactful digital and visual experiences.</p>
+      <a class="cta" href="assets/Yousif-Sarhan-CV.pdf" download>⬇ Download CV</a>
+      <a class="cta secondary" href="#projects">View Projects</a>
+    </div>
+  </header>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="container">
+    <h2 class="section underline">Professional Experience</h2>
+    <div class="timeline">
+      <details class="exp" open>
+        <summary>Freelanced Cinematographer — Various Major Brands <span class="chip">2022 – Present</span></summary>
+        <ul class="bullets">
+          <li>Filmed and directed visuals for fitness, travel, and luxury brands in Bahrain and internationally.</li>
+          <li>Delivered cinematic campaigns and commercials with storytelling-driven edits and color-graded visuals.</li>
+          <li>Collaborated with marketing teams to create viral social content.</li>
+        </ul>
+      </details>
+
+      <details class="exp">
+        <summary>Creative Director — Zawayyl Production (Internship) <span class="chip">Oct 2023 – Nov 2023</span></summary>
+        <ul class="bullets">
+          <li>Directed and delivered commercial projects from concept to final edit.</li>
+          <li>Produced scripts, storyboards, and animations aligned to client goals.</li>
+          <li>Managed shoots using Sony A7SII with professional lighting setups.</li>
+        </ul>
+      </details>
+
+      <details class="exp">
+        <summary>Founder — Adrenaline BH (Sports & Media Brand) <span class="chip">2022 – Present</span></summary>
+        <ul class="bullets">
+          <li>Built a niche adventure & fitness media brand recognized across Bahrain.</li>
+          <li>Produced collaborations with athletes, gyms, and brands.</li>
+          <li>Directed adrenaline-driven campaigns and travel visuals.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container">
+    <h2 class="section underline">Projects</h2>
+
+    <div class="filters">
+      <button class="pill active" data-filter="all">All</button>
+      <button class="pill" data-filter="frontend">Front End</button>
+      <button class="pill" data-filter="backend">Back End</button>
+      <button class="pill" data-filter="embedded">Embedded/Controls</button>
+      <button class="pill" data-filter="ml">Machine Learning</button>
+    </div>
+
+    <div class="proj-grid" id="projectGrid">
+      <!-- React / Frontend -->
+      <article class="proj-card" data-tags="frontend" data-logo="react">
+        <div class="logo"></div>
+        <div class="meta">
+          <h3>React Portfolio</h3>
+          <p class="muted">A fast, responsive portfolio built with React and CSS modules.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">CSS</span></div>
+          <div class="actions"><a class="btn-ghost" href="https://github.com/yousifsarhan/react-portfolio" target="_blank">View Repo ↗</a></div>
+        </div>
+      </article>
+
+      <!-- Node / Backend -->
+      <article class="proj-card" data-tags="backend" data-logo="nodedotjs">
+        <div class="logo"></div>
+        <div class="meta">
+          <h3>Node REST API</h3>
+          <p class="muted">RESTful API with Express, JWT auth, and MongoDB.</p>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span></div>
+          <div class="actions"><a class="btn-ghost" href="https://github.com/yousifsarhan/node-rest-api" target="_blank">View Repo ↗</a></div>
+        </div>
+      </article>
+
+      <!-- Python -->
+      <article class="proj-card" data-tags="ml" data-logo="python">
+        <div class="logo"></div>
+        <div class="meta">
+          <h3>Python Data Cleaner</h3>
+          <p class="muted">Pandas-based toolkit for cleaning and profiling datasets.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span></div>
+          <div class="actions"><a class="btn-ghost" href="https://github.com/yousifsarhan/python-data-cleaner" target="_blank">View Repo ↗</a></div>
+        </div>
+      </article>
+
+      <!-- Arduino / Embedded -->
+      <article class="proj-card" data-tags="embedded" data-logo="arduino">
+        <div class="logo"></div>
+        <div class="meta">
+          <h3>Arduino Sensor Hub</h3>
+          <p class="muted">Multi-sensor reading with serial streaming and filtering.</p>
+          <div class="tags"><span class="tag">Arduino</span><span class="tag">C++</span></div>
+          <div class="actions"><a class="btn-ghost" href="https://github.com/yousifsarhan/arduino-sensor-hub" target="_blank">View Repo ↗</a></div>
+        </div>
+      </article>
+
+      <!-- SQL -->
+      <article class="proj-card" data-tags="backend" data-logo="mysql">
+        <div class="logo"></div>
+        <div class="meta">
+          <h3>SQL Reporting Suite</h3>
+          <p class="muted">MySQL views, procedures, and scripts for analytics dashboards.</p>
+          <div class="tags"><span class="tag">MySQL</span><span class="tag">SQL</span></div>
+          <div class="actions"><a class="btn-ghost" href="https://github.com/yousifsarhan/sql-reporting-suite" target="_blank">View Repo ↗</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container">
+    <h2 class="section underline">Skills</h2>
+
+    <div class="skills-cols">
+      <!-- Dev -->
+      <div class="list">
+        <h3>Programming & Development</h3>
+        <div class="badge-grid">
+          <div class="skill" data-icon="html5"><span>HTML</span></div>
+
+          <div class="skill" data-icon="css3">
+            <img src="/Users/yossefkadry/Desktop/cs portfolio protoype/kisspng-cascading-style-sheets-html-web-page-5ae55eb45423e6.4422717315249814283446.jpg" alt="/Users/yossefkadry/Desktop/cs portfolio protoype/kisspng-cascading-style-sheets-html-web-page-5ae55eb45423e6.4422717315249814283446.jpg">
+            <span>CSS</span>
+          </div>
+          
+      
+          <div class="skill" data-icon="javascript"><span>JavaScript</span></div>
+          <div class="skill" data-icon="python"><span>Python</span></div>
+          <div class="skill" data-icon="mysql"><span>SQL</span></div>
+          
+          <div class="skill" data-icon="java">
+            <img src="/Users/yossefkadry/Desktop/cs portfolio protoype/Java_programming_language_logo.svg.png" alt="/Users/yossefkadry/Desktop/cs portfolio protoype/Java_programming_language_logo.svg.png">
+            <span>Java</span>
+          </div>
+          
+          <div class="skill" data-icon="github"><span>GitHub</span></div>
+        </div>
+      </div>
+
+      <!-- Media -->
+      <div class="list">
+        <h3>Media & Design</h3>
+        <div class="badge-grid">
+
+          <div class="skill" data-icon="adobepremierepro">
+            <img src="/Users/yossefkadry/Desktop/cs portfolio protoype/65e09abf952724557f01e3b7_Premiere_icon.webp" alt="/Users/yossefkadry/Desktop/cs portfolio protoype/65e09abf952724557f01e3b7_Premiere_icon.webp">
+            <span>Premiere Pro</span>
+          </div>
+          
+          <div class="skill" data-icon="adobeaftereffects">
+            <img src="/Users/yossefkadry/Desktop/cs portfolio protoype/adobe-after-effects-software-icon_539007-183.jpg" alt="/Users/yossefkadry/Desktop/cs portfolio protoype/adobe-after-effects-software-icon_539007-183.jpg">
+            <span>After Effects</span>
+          </div>
+          
+          <div class="skill" data-icon="adobephotoshop">
+            <img src="/Users/yossefkadry/Desktop/cs portfolio protoype/pngtree-adobe-photoshop-psd-ps-icon-png-image_4952703.png" alt="/Users/yossefkadry/Desktop/cs portfolio protoype/pngtree-adobe-photoshop-psd-ps-icon-png-image_4952703.png">
+            <span>Photoshop</span>
+          </div>
+          
+          <div class="skill" data-icon="adobelightroom">
+            <img src="/Users/yossefkadry/Desktop/cs portfolio protoype/Adobe-Lightroom-Logo-Photo-Editing.webp" alt="/Users/yossefkadry/Desktop/cs portfolio protoype/Adobe-Lightroom-Logo-Photo-Editing.webp">
+            <span>Lightroom</span>
+          </div>
+          
+          
+      
+
+          <div class="skill" data-icon="figma"><span>Figma (UI/UX)</span></div>
+        </div>
+      </div>
+
+      <!-- Core -->
+      <div class="list">
+        <h3>Core Competencies</h3>
+        <div class="badge-grid">
+          <div class="skill" data-icon="google"><span>Storytelling</span></div>
+          <div class="skill" data-icon="google"><span>Creativity</span></div>
+          <div class="skill" data-icon="google"><span>Problem Solving</span></div>
+          <div class="skill" data-icon="google"><span>Project Management</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="container">
+    <h2 class="section underline">Education</h2>
+    <div class="two">
+      <div class="card-simple">
+        <h3>Ahlia University</h3>
+        <p class="muted">2022–2026 (Expected)</p>
+        <p><strong>Bachelor of Information Technology and Multimedia Systems</strong></p>
+      </div>
+      <div class="card-simple">
+        <h3>Hawar International School</h3>
+        <p class="muted">Graduated June 2021</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <h2 class="section underline">Contact</h2>
+    <div class="two">
+      <div class="card-simple">
+        <p><strong>Phone:</strong> +973 36137880</p>
+        <p><strong>Email:</strong> <a href="mailto:info@yousifkadry.com">info@yousifkadry.com</a></p>
+        <p><strong>Address:</strong> Diyar Al Muharraq</p>
+      </div>
+      <div class="card-simple">
+        <p><strong>Portfolio:</strong> <a href="https://yousifkadry.com" target="_blank">yousifkadry.com</a></p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/yousifsarhan" target="_blank">github.com/yousifsarhan</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yossef-kadry-b92062144" target="_blank">linkedin.com/in/yossef-kadry</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> Yousif Sarhan — All Rights Reserved</p>
+  </footer>
+
+  <a class="toTop" href="#top">↑</a>
+
+  <script>
+    // Active nav
+    const sections=[...document.querySelectorAll("header#top, section")];
+    const links=[...document.querySelectorAll(".navlink")];
+    const getLink=id=>links.find(a=>a.getAttribute("href")==="#"+id);
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(a=>a.classList.remove("active"));
+          const l=getLink(e.target.id);if(l)l.classList.add("active");
+        }
+      })
+    },{rootMargin:"-40% 0px -55% 0px",threshold:.1});
+    sections.forEach(s=>obs.observe(s));
+
+    // Year
+    document.getElementById("year").textContent=new Date().getFullYear();
+
+    // Project filter
+    const pills=document.querySelectorAll('.pill');
+    const cards=[...document.querySelectorAll('#projectGrid .proj-card')];
+    pills.forEach(p=>{
+      p.addEventListener('click',()=>{
+        pills.forEach(x=>x.classList.remove('active'));
+        p.classList.add('active');
+        const f=p.dataset.filter;
+        cards.forEach(c=>{
+          const show = f==='all' || (c.dataset.tags||'').split(' ').includes(f);
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
+
+    // ===== Auto-inject logos from Simple Icons CDN =====
+    const slugMap = {
+      // Common aliases → Simple Icons slugs
+      'node':'nodedotjs','nodejs':'nodedotjs','node.js':'nodedotjs','nodedotjs':'nodedotjs',
+      'express':'express',
+      'react':'react',
+      'python':'python',
+      'pandas':'pandas',
+      'java':'java',
+      'mysql':'mysql','sql':'mysql',
+      'arduino':'arduino',
+      'html':'html5','html5':'html5',
+      'css':'css3','css3':'css3',
+      'js':'javascript','javascript':'javascript',
+      'github':'github',
+      'figma':'figma',
+      'premiere':'adobepremierepro','adobepremierepro':'adobepremierepro',
+      'aftereffects':'adobeaftereffects','adobeaftereffects':'adobeaftereffects',
+      'photoshop':'adobephotoshop','adobephotoshop':'adobephotoshop',
+      'lightroom':'adobelightroom','adobelightroom':'adobelightroom',
+      'google':'google'
+    };
+    const iconURL = (slug)=> `https://cdn.simpleicons.org/${slug}`;
+    const resolveSlug = (raw)=>{
+      if(!raw) return null;
+      const k = String(raw).toLowerCase().trim();
+      return slugMap[k] || k.replace(/\s+/g,'');
+    };
+
+// Inject project logos
+document.querySelectorAll('.proj-card').forEach(card=>{
+  const slug = resolveSlug(card.dataset.logo);
+  const holder = card.querySelector('.logo');
+  if(!holder || !slug) return;
+  const img = document.createElement('img');
+  img.loading = 'lazy';
+  img.alt = (card.querySelector('h3')?.textContent || slug) + ' logo';
+  img.src = card.dataset.img || iconURL(slug); // ← prefer your custom image
+  holder.innerHTML = '';
+  holder.appendChild(img);
+});
+
+
+    // Inject skill icons
+    document.querySelectorAll('.skill').forEach(s=>{
+      const slug = resolveSlug(s.dataset.icon);
+      if(!slug) return;
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.alt = slug + ' icon';
+      img.src = iconURL(slug);
+      // Only add if not already present
+      if(!s.querySelector('img')) s.insertBefore(img, s.firstChild);
+    });
+  </script>
+</body>
+</html>
+assets/icons/css.png
+assets/icons/java.png
+assets/icons/premiere.png
+assets/icons/after-effects.png
+assets/icons/photoshop.png
+assets/icons/lightroom.png
