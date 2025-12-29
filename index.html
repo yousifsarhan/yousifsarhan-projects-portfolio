@@ -219,7 +219,7 @@
         <div class="logo"></div>
         <div class="meta">
           <h3>Node REST API</h3>
-          <p class="muted">RESTful API with Express, JWT auth, and MongoDB.</p>
+          <p aclass="muted">RESTful API with Express, JWT auth, and MongoDB.</p>
           <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span></div>
           <div class="actions"><a class="btn-ghost" href="https://github.com/yousifsarhan/node-rest-api" target="_blank">View Repo ↗</a></div>
         </div>
@@ -276,7 +276,6 @@
             <span>CSS</span>
           </div>
           
-      
           <div class="skill" data-icon="javascript"><span>JavaScript</span></div>
           <div class="skill" data-icon="python"><span>Python</span></div>
           <div class="skill" data-icon="mysql"><span>SQL</span></div>
@@ -314,9 +313,6 @@
             <img src="assets/Adobe-Lightroom-Logo-Photo-Editing.webp" alt="Lightroom logo">
             <span>Lightroom</span>
           </div>
-          
-          
-      
 
           <div class="skill" data-icon="figma"><span>Figma (UI/UX)</span></div>
         </div>
@@ -436,19 +432,18 @@
       return slugMap[k] || k.replace(/\s+/g,'');
     };
 
-// Inject project logos
-document.querySelectorAll('.proj-card').forEach(card=>{
-  const slug = resolveSlug(card.dataset.logo);
-  const holder = card.querySelector('.logo');
-  if(!holder || !slug) return;
-  const img = document.createElement('img');
-  img.loading = 'lazy';
-  img.alt = (card.querySelector('h3')?.textContent || slug) + ' logo';
-  img.src = card.dataset.img || iconURL(slug); // ← prefer your custom image
-  holder.innerHTML = '';
-  holder.appendChild(img);
-});
-
+    // Inject project logos
+    document.querySelectorAll('.proj-card').forEach(card=>{
+      const slug = resolveSlug(card.dataset.logo);
+      const holder = card.querySelector('.logo');
+      if(!holder || !slug) return;
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.alt = (card.querySelector('h3')?.textContent || slug) + ' logo';
+      img.src = card.dataset.img || iconURL(slug);
+      holder.innerHTML = '';
+      holder.appendChild(img);
+    });
 
     // Inject skill icons
     document.querySelectorAll('.skill').forEach(s=>{
@@ -464,9 +459,4 @@ document.querySelectorAll('.proj-card').forEach(card=>{
   </script>
 </body>
 </html>
-assets/icons/css.png
-assets/icons/java.png
-assets/icons/premiere.png
-assets/icons/after-effects.png
-assets/icons/photoshop.png
-assets/icons/lightroom.png
+
